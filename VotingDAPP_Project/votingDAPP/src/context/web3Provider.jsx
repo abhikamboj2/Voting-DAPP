@@ -1,23 +1,31 @@
-import { web3context } from "./web3context";
-import  { useState } from 'react'
-const web3Provider=({children})=> {
-    const [webState,setWebState]=useState({
+import { getWeb3State } from "../utils/getWeb3State";
+import { Web3context } from "./web3context";
+import { useState } from "react";
+const Web3Provider=(children)=> {
+    const [webState,setWebState]= useState({
           contractInstance:null,
           selectedAccount:null,
           chainId:null
     })
     const handleWallet=async ()=>{
-        const {contractInstance,selectedAccount,chainId}=await getWeb3Context();
+      try{
+
+        const {contractInstance,selectedAccount,chainId}=await getWeb3State();
+        // console.log(contractInstance,selectedAccount,chainId);
         setWebState({contractInstance,selectedAccount,chainId});
+      }
+      catch(err){
+        console.error(err);
+      }
     }
   return (
     <>
-    <web3context.Provider value={webState}>
-{children}
-    </web3context.Provider>
-    <button onClick={handleWallet}></button>
+    <Web3context.Provider value={webState}>
+           {children}
+           <button onClick={handleWallet}>Connect Wallet</button>
+    </Web3context.Provider>
     </>
   )
 }
 
-export default web3Provider;
+export default Web3Provider;
