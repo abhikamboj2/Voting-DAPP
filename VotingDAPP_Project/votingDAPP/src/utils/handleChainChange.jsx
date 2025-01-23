@@ -1,6 +1,6 @@
 
 
-const handleChainChange = async(setWeb3State) => {
+export const handleChainChange = async(setWeb3State) => {
     const chainIdHex=await window.ethereum.request({
         method:'eth_chainId'
     })
@@ -9,4 +9,4 @@ const handleChainChange = async(setWeb3State) => {
     setWeb3State((prev)=>({...prev, chainId}));
 }
 
-export default handleChainChange
+// export default handleChainChange
