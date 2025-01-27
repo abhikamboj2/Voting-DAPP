@@ -24,7 +24,10 @@ import { handleAccountChange } from "../utils/handleAccountChange";
       window.ethereum.on('accountsChanged',()=> handleAccountChange(setWebState));
       window.ethereum.on('chainChanged', ()=>handleChainChange(setWebState));
       
-      
+      return ()=>{
+        window.ethereum.removeListener('accountsChanged',()=> handleAccountChange(setWebState));
+        window.ethereum.removeListener('chainChanged', ()=>handleChainChange(setWebState));
+      }
 });
   return (
     <>
