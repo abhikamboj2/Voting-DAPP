@@ -2,6 +2,8 @@
 import './App.css'
 import Web3Provider from './context/web3Provider'
 import Dummy from './Dummy'
+import RegisterCandidate from './Pages/Candidate/RegisterCandidate'
+import RegisterVoter from './Pages/Voter/RegisterVoter'
 // import {Web3Provider} from './context/web3Provider'
 function App() {
 
@@ -10,7 +12,7 @@ function App() {
     <>
     <Web3Provider >
       
-      <Dummy></Dummy>
+     <RegisterVoter></RegisterVoter>
     </Web3Provider>
     </>
   )

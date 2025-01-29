@@ -1,0 +1,70 @@
+import  { useRef } from "react";
+import { useWeb3Context } from "../../context/useWeb3Context";
+
+
+const RegisterCandidate = () => {
+    const {contractInstance}=useWeb3Context();
+    const nameRef = useRef();
+    const partyRef = useRef();
+    const ageRef = useRef();
+    const genderRef = useRef();
+    // const candidateIdRef = useRef();
+    // const candidateAddressRef = useRef();
+    
+    const handleCandidateRegistration =async (e) => {
+        try{
+            e.preventDefault();
+            
+                const name= nameRef.current.value
+                const party=partyRef.current.value
+                const age=ageRef.current.value
+                const gender= genderRef.current.value
+                // const candidateId= candidateIdRef.current.value
+                // const candidateAddress= candidateAddressRef.current.value
+                    
+                
+                // await contractInstance.RegisterCandidate(name,party,age,gender);
+                console.log("Candidate Registered ");
+            }
+                catch(err){
+                    console.error(err);
+                }
+                    
+    };
+    
+    // Logic to send data to smart contract
+
+  return (
+    <div className="form-container">
+      <h2>Candidate Registration</h2>
+      <form onSubmit={handleCandidateRegistration}>
+        <label>Name:</label>
+        <input type="text" ref={nameRef} required />
+
+        <label>Party:</label>
+        <input type="text" ref={partyRef} required />
+
+        <label>Age:</label>
+        <input type="number" ref={ageRef} required />
+
+        <label>Gender:</label>
+        <select ref={genderRef} required>
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+
+        {/* <label>Candidate ID:</label>
+        <input type="number" ref={candidateIdRef} required />
+
+        <label>Candidate Address:</label>
+        <input type="text" ref={candidateAddressRef} required /> */}
+
+        <button type="submit">Register Candidate</button>
+      </form>
+    </div>
+  );
+};
+
+export default RegisterCandidate;
