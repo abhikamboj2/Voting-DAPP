@@ -3,7 +3,7 @@ import { Web3context } from "./web3context";
 import { useEffect, useState } from "react";
 import {handleChainChange} from "../utils/handleChainChange";
 import { handleAccountChange } from "../utils/handleAccountChange";
-  const Web3Provider=(children)=> {
+  const Web3Provider=({children})=> {
     const [webState,setWebState]= useState({
           contractInstance:null,
           selectedAccount:null,
@@ -33,8 +33,8 @@ import { handleAccountChange } from "../utils/handleAccountChange";
     <>
     <Web3context.Provider value={webState}>
            {children}
-    </Web3context.Provider>
            <button onClick={handleWallet}>Connect Wallet</button>
+    </Web3context.Provider>
     </>
   )
 }

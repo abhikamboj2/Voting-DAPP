@@ -1,9 +1,9 @@
 import  { useRef } from "react";
-import { useWeb3Context } from "../../context/useWeb3Context";
+// import { useWeb3Context } from "../../context/useWeb3Context";
 
 
 const RegisterCandidate = () => {
-    const {contractInstance}=useWeb3Context();
+    // const {contractInstance}=useWeb3Context();
     const nameRef = useRef();
     const partyRef = useRef();
     const ageRef = useRef();
@@ -24,7 +24,7 @@ const RegisterCandidate = () => {
                     
                 
                 // await contractInstance.RegisterCandidate(name,party,age,gender);
-                console.log("Candidate Registered ");
+                console.log("Candidate Registered ", name ,party,age,gender);
             }
                 catch(err){
                     console.error(err);
