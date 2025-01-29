@@ -19,7 +19,7 @@ const RegisterVoter = () => {
             const genderRef=gender.current.value;
             const ageRef=age.current.value;
             console.log(nameRef,genderRef,ageRef)
-            // await contractInstance.RegisterVoter(nameRef,ageRef,genderRef);
+            await contractInstance.RegisterVoter(nameRef,ageRef,genderRef);
         }catch(err){
             console.error(err);
         }
