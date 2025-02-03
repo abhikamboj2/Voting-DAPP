@@ -31,9 +31,9 @@ import { handleAccountChange } from "../utils/handleAccountChange";
 });
   return (
     <>
-    <Web3context.Provider value={webState}>
+    <Web3context.Provider value={{webState,handleWallet}}>
            {children}
-           <button onClick={handleWallet}>Connect Wallet</button>
+           
     </Web3context.Provider>
     </>
   )
