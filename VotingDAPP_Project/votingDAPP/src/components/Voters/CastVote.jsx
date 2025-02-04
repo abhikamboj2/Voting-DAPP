@@ -2,7 +2,8 @@ import {useRef} from 'react'
 import { useWeb3Context } from "../../context/useWeb3Context"
 
 export const CastVote = () => {
-    const {contractInstance}=useWeb3Context();
+  const {web3State}=useWeb3Context();
+      const {contractInstance}=web3State;
     const RefVoterID=useRef(null);
     const RefCandidateID=useRef(null);
     const handleCastVote=async(e)=>{
