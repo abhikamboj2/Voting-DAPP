@@ -3,7 +3,8 @@ import { useWeb3Context } from "../../context/useWeb3Context"
 
 
 export default function DisplayWinner() {
-  const {contractInstance}=useWeb3Context();
+  const {web3State}=useWeb3Context();
+      const {contractInstance}=web3State;
   const [Winner,setWinner]=useState('');
   useEffect(()=>{
     const getWinner=async()=>{
@@ -12,9 +13,7 @@ export default function DisplayWinner() {
         const WinningCandidate= await contractInstance.winner();
         setWinner(WinningCandidate)
       }catch(err){
-        console.error(
-          err
-        )
+        console.error(err)
       }
 
     }
