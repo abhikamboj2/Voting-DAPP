@@ -16,8 +16,9 @@ export const getWeb3State=async()=>{
         const chainId=parseInt(chainIdHex,16);
         const provider= new ethers.BrowserProvider(window.ethereum);
         const signer=await provider.getSigner();
-        const contractAddress="0xCCC15B5CCAF92d34f3A99c2270920D3Fcf42c290";
+        const contractAddress="0x410470831f788333DF0adc3D881f5850bF0Dc5c2";
         const contractInstance=new ethers.Contract(contractAddress,abi,signer);
+        // console.log(contractInstance);
         return{ selectedAccount,contractInstance,chainId}
    }
    catch(error ){
