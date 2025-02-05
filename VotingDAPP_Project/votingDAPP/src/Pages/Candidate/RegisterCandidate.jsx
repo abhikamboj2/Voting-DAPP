@@ -3,12 +3,13 @@ import { useWeb3Context } from "../../context/useWeb3Context";
 
 
 const RegisterCandidate = () => {
-  const {web3State}=useWeb3Context();
-      const {contractInstance}=web3State;
-    const nameRef = useRef();
-    const partyRef = useRef();
-    const ageRef = useRef();
-    const genderRef = useRef();
+    const {web3State}=useWeb3Context();
+    const {contractInstance}=web3State;
+    console.log(contractInstance)
+    const nameRef = useRef(null);
+    const partyRef = useRef(null);
+    const ageRef = useRef(null);
+    const genderRef = useRef(null);
     // const candidateIdRef = useRef();
     // const candidateAddressRef = useRef();
     
@@ -24,8 +25,9 @@ const RegisterCandidate = () => {
                 // const candidateAddress= candidateAddressRef.current.value
                     
                 
-                await contractInstance.RegisterCandidate(name,party,age,gender);
                 console.log("Candidate Registered ", name ,party,age,gender);
+                await contractInstance.registerCandidate(name,party,age,gender);
+                console.log("successfull registration")
             }
                 catch(err){
                     console.error(err);
@@ -49,12 +51,7 @@ const RegisterCandidate = () => {
         <input type="number" ref={ageRef} required />
 
         <label>Gender:</label>
-        <select ref={genderRef} required>
-          <option value="">Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
+       <input type="number" ref={genderRef}></input>
 
         {/* <label>Candidate ID:</label>
         <input type="number" ref={candidateIdRef} required />

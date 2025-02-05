@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { web3context } from "./web3context";
+import { Web3Context } from "./web3Context";
 import { getWeb3State } from "../utils/getWeb3State";
 import { handleAccountChange } from "../utils/handleAccountChange";
 import { handleChainChange } from "../utils/handleChainChange";
@@ -31,9 +31,9 @@ const Web3Provider = ({children})=>{
   
   return (
     <> 
-      <web3context.Provider value={{web3State,handleWallet}}>
+      <Web3Context.Provider value={{web3State,handleWallet}}>
         {children}
-      </web3context.Provider>
+      </Web3Context.Provider>
      
     </>
   )

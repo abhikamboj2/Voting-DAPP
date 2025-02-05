@@ -9,7 +9,7 @@ export const Wallet = () => {
   const NavigateTO=useNavigate();
   useEffect(()=>{
       if(selectedAccount){
-        NavigateTO('/')
+        NavigateTO('Register-Candidate')
       }
   })
   return (
