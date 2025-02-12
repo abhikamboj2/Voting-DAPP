@@ -16,8 +16,18 @@ export const getWeb3State=async()=>{
         const chainId=parseInt(chainIdHex,16);
         const provider= new ethers.BrowserProvider(window.ethereum);
         const signer=await provider.getSigner();
+        const message="Welcome to Voting DAPP. You now agree to term and Conditions";
+
+        const signature=signer.signMessage(message);
+        const datasign={
+            signature
+        }
+
         const contractAddress="0x410470831f788333DF0adc3D881f5850bF0Dc5c2";
+        const res =await fetch(`http://localhost:3000/api/authentication?accountAddress=${selectedAccount}`,datasign)
+        console.log(res.data.token)
         const contractInstance=new ethers.Contract(contractAddress,abi,signer);
+
         // console.log(contractInstance);
         return{ selectedAccount,contractInstance,chainId}
    }
