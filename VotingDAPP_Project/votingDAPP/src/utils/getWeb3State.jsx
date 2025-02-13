@@ -1,5 +1,6 @@
 import {ethers} from "ethers";
 import abi from "../constants/abi.json"
+import axios from "axios";
 export const getWeb3State=async()=>{
     try{
          // metamask installed check 
@@ -14,18 +15,19 @@ export const getWeb3State=async()=>{
             method:'eth_chainId'
         })
         const chainId=parseInt(chainIdHex,16);
+        const contractAddress="0x410470831f788333DF0adc3D881f5850bF0Dc5c2";
         const provider= new ethers.BrowserProvider(window.ethereum);
         const signer=await provider.getSigner();
         const message="Welcome to Voting DAPP. You now agree to term and Conditions";
 
-        const signature=signer.signMessage(message);
+        const signature=await signer.signMessage(message);
         const datasign={
             signature
         }
 
-        const contractAddress="0x410470831f788333DF0adc3D881f5850bF0Dc5c2";
-        const res =await fetch(`http://localhost:3000/api/authentication?accountAddress=${selectedAccount}`,datasign)
+        const res =await axios.post(`http://localhost:3000/api/authentication?accountAddress=${selectedAccount}`,datasign)
         console.log(res.data.token)
+        // localStorage.set("Token",res.data.token)
         const contractInstance=new ethers.Contract(contractAddress,abi,signer);
 
         // console.log(contractInstance);
