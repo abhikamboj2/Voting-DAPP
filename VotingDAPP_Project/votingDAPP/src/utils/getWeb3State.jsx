@@ -27,7 +27,7 @@ export const getWeb3State=async()=>{
 
         const res =await axios.post(`http://localhost:3000/api/authentication?accountAddress=${selectedAccount}`,datasign)
         console.log(res.data.token)
-        // localStorage.set("Token",res.data.token)
+        localStorage.setItem("Token",res.data.token)
         const contractInstance=new ethers.Contract(contractAddress,abi,signer);
 
         // console.log(contractInstance);

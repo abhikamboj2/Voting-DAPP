@@ -1,5 +1,6 @@
 import  { useRef } from "react";
 import { useWeb3Context } from "../../context/useWeb3Context";
+import axios from "axios";
 
 
 const RegisterCandidate = () => {
@@ -16,18 +17,26 @@ const RegisterCandidate = () => {
     const handleCandidateRegistration =async (e) => {
         try{
             e.preventDefault();
+            const token=localStorage.getItem('token');
+            const config={
+              headers:{
+                 "x-access-token":token
+              }
+            }
+                const res=await axios.post('http://localhost:3000/api/postCandidateImage',config)
+                console.log(res.data)
             
-                const name= nameRef.current.value
-                const party=partyRef.current.value
-                const age=ageRef.current.value
-                const gender= genderRef.current.value
+                // const name= nameRef.current.value
+                // const party=partyRef.current.value
+                // const age=ageRef.current.value
+                // const gender= genderRef.current.value
                 // const candidateId= candidateIdRef.current.value
                 // const candidateAddress= candidateAddressRef.current.value
                     
                 
-                console.log("Candidate Registered ", name ,party,age,gender);
-                await contractInstance.registerCandidate(name,party,age,gender);
-                console.log("successfull registration")
+                // console.log("Candidate Registered ", name ,party,age,gender);
+                // await contractInstance.registerCandidate(name,party,age,gender);
+                // console.log("successfull registration")
             }
                 catch(err){
                     console.error(err);
