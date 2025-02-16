@@ -1,8 +1,8 @@
-import  { useRef } from "react";
+import  { useRef, useState } from "react";
 import { useWeb3Context } from "../../context/useWeb3Context";
 import axios from "axios";
 
-
+import { uploadCandidateImage } from "../../utils/uploadCandidateImage";
 const RegisterCandidate = () => {
     const {web3State}=useWeb3Context();
     const {contractInstance}=web3State;
@@ -11,6 +11,7 @@ const RegisterCandidate = () => {
     const partyRef = useRef(null);
     const ageRef = useRef(null);
     const genderRef = useRef(null);
+    const {file,setFile}=useState("")
     // const candidateIdRef = useRef();
     // const candidateAddressRef = useRef();
     
@@ -23,7 +24,8 @@ const RegisterCandidate = () => {
                  "x-access-token":token
               }
             }
-                const res=await axios.post('http://localhost:3000/api/postCandidateImage',config)
+                await uploadCandidateImage(file)
+                const res=await axios.post('http://localhost:3000/api/postCandidateImage',{},config)
                 console.log(res.data)
             
                 // const name= nameRef.current.value
@@ -70,6 +72,8 @@ const RegisterCandidate = () => {
 
         <button type="submit">Register Candidate</button>
       </form>
+      <label >Image Upload Of Candidate</label>
+      <input type="file" onChange={(e)=>setFile(e.target.files[0])}></input>
     </div>
   );
 };
